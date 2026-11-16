@@ -1,0 +1,39 @@
+
+[
+    {
+        "id": "E101",
+        "name": "Aarav Sharma",
+        "department": "IT",
+        "salary": 45000
+    },
+    {
+        "id": "E102",
+        "name": "Priya Patil",
+        "department": "HR",
+        "salary": 38000
+    },
+    {
+        "id": "E103",
+        "name": "Rohan Mehta",
+        "department": "Finance",
+        "salary": 42000
+    },
+    {
+        "id": "E104",
+        "name": "Ananya Deshmukh",
+        "department": "Marketing",
+        "salary": 36000
+    },
+    {
+        "id": "E105",
+        "name": "Kabir Joshi",
+        "department": "Operations",
+        "salary": 40000
+    },
+    {
+        "id": "E106",
+        "name": "Isha",
+        "department": "Marketing",
+        "salary": 35600
+    }
+]

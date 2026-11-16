@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StaffDesk | Employee Management</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">S</div>
+                <div>
+                    <h2>StaffDesk</h2>
+                    <p>WORKSPACE</p>
+                </div>
+            </div>
+
+            <p class="menu-label">WORKSPACE</p>
+            <a href="#" class="nav-item active"><span>▦</span> Overview</a>
+            <a href="#employee-form" class="nav-item"><span>＋</span> Add employee</a>
+            <a href="#records" class="nav-item"><span>▤</span> Employee records</a>
+
+            <div class="sidebar-bottom">
+                <div class="help-icon">?</div>
+                <div>
+                    <strong>Staff management</strong>
+                    <p>Simple. Organized. Efficient.</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="breadcrumb">Workspace / Overview</p>
+                    <h1>Employee Directory</h1>
+                </div>
+                <div class="admin">
+                    <div class="admin-avatar">AD</div>
+                    <div>
+                        <strong>Administrator</strong>
+                        <span>HR Department</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="welcome">
+                <div>
+                    <span class="eyebrow">PEOPLE MANAGEMENT</span>
+                    <h2>Every employee, in one place.</h2>
+                    <p>Add staff details and manage your employee records easily.</p>
+                </div>
+                <div class="welcome-symbol">✳</div>
+            </section>
+
+            <section class="stats">
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Total employees</span>
+                        <span class="stat-symbol orange">♙</span>
+                    </div>
+                    <h2 id="totalEmployees">0</h2>
+                    <p>Employee records</p>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Departments</span>
+                        <span class="stat-symbol green">▦</span>
+                    </div>
+                    <h2 id="totalDepartments">0</h2>
+                    <p>Unique departments</p>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>System status</span>
+                        <span class="stat-symbol violet">✓</span>
+                    </div>
+                    <h2 class="active-text">Active</h2>
+                    <p><span class="live-dot"></span> Ready to manage records</p>
+                </article>
+            </section>
+
+            <section class="workspace">
+                <article class="panel form-panel" id="employee-form">
+                    <div class="panel-heading">
+                        <div class="heading-icon">＋</div>
+                        <div>
+                            <h2>New employee</h2>
+                            <p>Fill in the staff information.</p>
+                        </div>
+                    </div>
+
+                    <form id="employeeForm">
+                        <div class="form-field">
+                            <label for="employeeId">Employee ID</label>
+                            <input id="employeeId" type="text" placeholder="e.g. E104" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="employeeName">Full name</label>
+                            <input id="employeeName" type="text" placeholder="Enter employee name" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="department">Department</label>
+                            <select id="department" required>
+                                <option value="">Select department</option>
+                                <option value="IT">IT</option>
+                                <option value="HR">HR</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Operations">Operations</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="salary">Monthly salary (₹)</label>
+                            <input id="salary" type="number" min="1" placeholder="e.g. 35000" required>
+                        </div>
+
+                        <button type="submit" class="primary-btn">Add employee <span>→</span></button>
+                    </form>
+
+                    <div class="json-box" id="employeeOutput" hidden>
+                        <div class="json-heading">
+                            <strong>Generated JSON</strong>
+                            <span>JSON</span>
+                        </div>
+                        <pre id="jsonText"></pre>
+                    </div>
+                </article>
+
+                <article class="panel records-panel" id="records">
+                    <div class="records-heading">
+                        <div>
+                            <span class="eyebrow">DIRECTORY</span>
+                            <h2>Employee records</h2>
+                            <p>View employees loaded from the JSON file and browser storage.</p>
+                        </div>
+                        <button type="button" class="load-btn" id="loadButton">↻ Load records</button>
+                    </div>
+
+                    <div class="table-tools">
+                        <span class="record-label">ALL EMPLOYEES</span>
+                        <span id="recordCount">0 records</span>
+                    </div>
+
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>EMPLOYEE</th>
+                                    <th>DEPARTMENT</th>
+                                    <th>SALARY</th>
+                                    <th>STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTableBody">
+                                <tr>
+                                    <td colspan="4" class="empty">
+                                        Click "Load records" to display employees.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="records-footer">
+                        <span><span class="live-dot"></span> Employee directory</span>
+                        <button type="button" class="clear-btn" id="clearButton">Clear saved employees</button>
+                    </div>
+                </article>
+            </section>
+
+            <footer>StaffDesk · Employee Management System · JavaScript & JSON</footer>
+        </main>
+    </div>
+</body>
+</html>

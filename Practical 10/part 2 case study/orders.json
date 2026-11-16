@@ -1,0 +1,42 @@
+[
+    {
+        "orderId": "ORD101",
+        "customerName": "Ishita Deshmukh",
+        "foodItem": "Farmhouse Pizza",
+        "quantity": 2,
+        "totalAmount": 640,
+        "orderStatus": "Ready"
+    },
+    {
+        "orderId": "ORD102",
+        "customerName": "Kabir Shah",
+        "foodItem": "Crispy Veg Burger",
+        "quantity": 3,
+        "totalAmount": 450,
+        "orderStatus": "Preparing"
+    },
+    {
+        "orderId": "ORD103",
+        "customerName": "Ananya Kulkarni",
+        "foodItem": "White Sauce Pasta",
+        "quantity": 1,
+        "totalAmount": 280,
+        "orderStatus": "Delivered"
+    },
+    {
+        "orderId": "ORD104",
+        "customerName": "Vihaan Joshi",
+        "foodItem": "Paneer Tikka Wrap",
+        "quantity": 2,
+        "totalAmount": 360,
+        "orderStatus": "Preparing"
+    },
+    {
+        "orderId": "ORD105",
+        "customerName": "Meera Desai",
+        "foodItem": "Chocolate Brownie",
+        "quantity": 4,
+        "totalAmount": 320,
+        "orderStatus": "Ready"
+    }
+]

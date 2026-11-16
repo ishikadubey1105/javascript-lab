@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Directory</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        nav {
+            background: #fff;
+            border-bottom: 2px solid #222;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 19px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            background: #222;
+            color: #fff;
+            padding: 7px 9px;
+            margin-right: 8px;
+        }
+
+        nav small {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .page {
+            max-width: 1050px;
+            margin: 45px auto;
+            padding: 0 22px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .intro small {
+            display: inline-block;
+            border: 1px solid #aaa;
+            border-radius: 20px;
+            padding: 6px 13px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .intro h1 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .overview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .stat {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 18px 20px;
+            border-radius: 6px;
+        }
+
+        .stat p {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 9px;
+        }
+
+        .stat h2 {
+            font-size: 24px;
+        }
+
+        .directory {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            overflow: hidden;
+        }
+
+        .directory-head {
+            padding: 20px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .directory-head h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .directory-head p {
+            font-size: 12px;
+            color: #777;
+        }
+
+        button {
+            background: #222;
+            color: #fff;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 12px 17px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+
+        th {
+            background: #f3f3f3;
+            color: #555;
+            text-align: left;
+            font-size: 11px;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            padding: 15px 22px;
+        }
+
+        td {
+            padding: 17px 22px;
+            font-size: 13px;
+            border-top: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background: #f7f7f7;
+        }
+
+        td:first-child {
+            font-weight: bold;
+        }
+
+        .marks {
+            display: inline-block;
+            min-width: 45px;
+            text-align: center;
+            padding: 6px 9px;
+            background: #eee;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #777;
+            padding: 35px 15px;
+        }
+
+        #message {
+            display: none;
+            padding: 12px 16px;
+            background: #eee;
+            border-left: 3px solid #222;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px 0;
+            border-top: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        footer strong {
+            color: #222;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 16px;
+            }
+
+            nav small {
+                display: none;
+            }
+
+            .page {
+                margin: 30px auto;
+                padding: 0 12px;
+            }
+
+            .intro h1 {
+                font-size: 28px;
+            }
+
+            .overview {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                padding: 14px 18px;
+            }
+
+            .directory-head {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            th, td {
+                padding: 14px;
+            }
+
+            footer {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="brand"><span>SD</span> STUDENT DIRECTORY</div>
+        <small>STUDENT INFORMATION SYSTEM</small>
+    </nav>
+
+    <main class="page">
+        <section class="intro">
+            <small>ACADEMIC RECORDS</small>
+            <h1>Student Directory</h1>
+            <p>View student details and academic performance in one place.</p>
+        </section>
+
+        <section class="overview">
+            <div class="stat">
+                <p>RECORD TYPE</p>
+                <h2>Students</h2>
+            </div>
+            <div class="stat">
+                <p>TOTAL RECORDS</p>
+                <h2 id="totalCount">--</h2>
+            </div>
+            <div class="stat">
+                <p>DATA SOURCE</p>
+                <h2>JSON File</h2>
+            </div>
+        </section>
+
+        <section class="directory">
+            <div class="directory-head">
+                <div>
+                    <h2>Student Information</h2>
+                    <p>Retrieve records from the local JSON file.</p>
+                </div>
+                <button id="loadStudents">LOAD RECORDS +</button>
+            </div>
+
+            <div id="message"></div>
+
+            <div class="table-wrap">
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>Department</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                No records loaded. Click "LOAD RECORDS +" to begin.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <span>Student Directory | jQuery and JSON Practical</span>
+            <span>Designed by <strong>Rudrakshi Bhandekar</strong> | PRN: <strong>24070521012</strong></span>
+        </footer>
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            $("#loadStudents").on("click", function () {
+                var button = $(this);
+                var tbody = $("#studentTable tbody");
+
+                button.prop("disabled", true).text("LOADING...");
+                $("#message").hide();
+
+                $.getJSON("students.json")
+                    .done(function (data) {
+                        tbody.empty();
+
+                        $.each(data, function (index, student) {
+                            var row = $("<tr>")
+                                .append($("<td>").text(student.id))
+                                .append($("<td>").text(student.name))
+                                .append($("<td>").text(student.department))
+                                .append(
+                                    $("<td>").append(
+                                        $("<span class='marks'>").text(student.marks)
+                                    )
+                                );
+
+                            tbody.append(row);
+                        });
+
+                        $("#totalCount").text(data.length);
+
+                        if (data.length === 0) {
+                            tbody.html(
+                                '<tr><td colspan="4" class="empty-state">No student records found.</td></tr>'
+                            );
+                        }
+                    })
+                    .fail(function () {
+                        tbody.html(
+                            '<tr><td colspan="4" class="empty-state">Unable to load student records.</td></tr>'
+                        );
+
+                        $("#totalCount").text("--");
+
+                        $("#message")
+                            .text("Unable to load students.json. Check the file location and try again.")
+                            .show();
+                    })
+                    .always(function () {
+                        button.prop("disabled", false).text("LOAD RECORDS +");
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

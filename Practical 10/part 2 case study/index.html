@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Order Register</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <main class="workspace">
+
+        <aside class="sidebar">
+            <div class="restaurant-mark">R.</div>
+            <p class="side-caption">RESTAURANT</p>
+            <h1>Order<br>Register<span>.</span></h1>
+
+            <div class="side-line"></div>
+
+            <p class="side-description">
+                A simple record of customer orders, food items and daily sales.
+            </p>
+
+            <div class="side-illustration">
+                <div class="plate outer-plate">
+                    <div class="plate inner-plate">
+                        <span>R</span>
+                    </div>
+                </div>
+                <div class="fork">≋</div>
+                <div class="spoon">◯</div>
+            </div>
+
+            <div class="sales-note">
+                <p>DAILY COLLECTION</p>
+                <h2 id="totalSales">₹0</h2>
+                <span>Calculated from loaded orders</span>
+            </div>
+
+            <div class="sidebar-bottom">
+                RESTAURANT MANAGEMENT<br>
+                ORDER RECORDS / 01
+            </div>
+        </aside>
+
+        <section class="content">
+
+            <div class="content-heading">
+                <div>
+                    <p class="section-number">01 / ORDER RECORDS</p>
+                    <h2>Today's Orders</h2>
+                    <p class="heading-description">
+                        Check each order and its current preparation status.
+                    </p>
+                </div>
+
+                <button id="viewOrders">
+                    LOAD DATA <span>↗</span>
+                </button>
+            </div>
+
+            <div class="record-strip">
+                <div>
+                    <span class="record-label">TOTAL ENTRIES</span>
+                    <strong id="totalOrders">0</strong>
+                </div>
+                <div class="strip-divider"></div>
+                <div>
+                    <span class="record-label">RECORD TYPE</span>
+                    <strong>Food Orders</strong>
+                </div>
+            </div>
+
+            <div id="message" class="message"></div>
+
+            <div id="errorMessage" class="error-message">
+                Could not load orders.json. Please check the file and try again.
+            </div>
+
+            <div class="table-heading">
+                <h3>Order Ledger</h3>
+                <span>ORDER DETAILS &nbsp; / &nbsp; INR</span>
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NO.</th>
+                            <th>ORDER</th>
+                            <th>CUSTOMER / ITEM</th>
+                            <th>QTY</th>
+                            <th>AMOUNT</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersBody">
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <span class="empty-symbol">—</span>
+                                <p>No records to display</p>
+                                <small>Use the LOAD DATA button to retrieve orders.</small>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total-line">
+                <div>
+                    <span>REGISTER SUMMARY</span>
+                    <p>Grand total of all loaded orders</p>
+                </div>
+                <strong id="bottomSales">₹0</strong>
+            </div>
+
+            <footer>
+                <span>ORDER REGISTER <b>©</b></span>
+                <span>Restaurant Order Management Practical</span>
+            </footer>
+
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
